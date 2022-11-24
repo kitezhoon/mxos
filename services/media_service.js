@@ -44,13 +44,13 @@ var MediaService = (function (_super) {
             utils.log.debug('web request received : %s', request.url);
             var uri = url.parse(request.url, true);
             var action = uri.pathname;
-            if (action == '/web/snapshot.jpg') {
+            if (action == '/web/snapshot.png') {
                 if (_this.ffmpeg_process != null) {
                     utils.log.info("ffmpeg - already running");
                     _this.ffmpeg_responses.push(response);
                 }
                 else {
-                    var cmd = "ffmpeg -fflags nobuffer -probesize 256 -rtsp_transport tcp -i rtsp://127.0.0.1:" + _this.config.RTSPPort + "/" + _this.config.RTSPName + " -vframes 1  -r 1 -s 640x480 -y /dev/shm/snapshot.jpg";
+                    var cmd = "ffmpeg -fflags nobuffer -probesize 256 -rtsp_transport tcp -i rtsp://127.0.0.1:" + _this.config.RTSPPort + "/" + _this.config.RTSPName + " -vframes 1  -r 1 -s 640x480 -y /dev/shm/snapshot.png";
                     var options = { timeout: 15000 };
                     utils.log.info("ffmpeg - starting");
                     _this.ffmpeg_responses.push(response);
