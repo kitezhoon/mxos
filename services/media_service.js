@@ -73,14 +73,14 @@ var MediaService = (function (_super) {
     };
     MediaService.prototype.deliver_jpg = function (response) {
         try {
-            var img = fs.readFileSync('/dev/shm/snapshot.jpg');
-            response.writeHead(200, { 'Content-Type': 'image/jpg' });
+            var img = fs.readFileSync('/dev/shm/snapshot.png');
+            response.writeHead(200, { 'Content-Type': 'image/png' });
             response.end(img, 'binary');
         }
         catch (err) {
             utils.log.debug("Error opening snapshot : %s", err);
-            var img = fs.readFileSync('web/snapshot.jpg');
-            response.writeHead(200, { 'Content-Type': 'image/jpg' });
+            var img = fs.readFileSync('web/snapshot.png');
+            response.writeHead(200, { 'Content-Type': 'image/png' });
             response.end(img, 'binary');
         }
     };
@@ -543,7 +543,7 @@ var MediaService = (function (_super) {
         port.GetSnapshotUri = function (args) {
             var GetSnapshotUriResponse = {
                 MediaUri: {
-                    Uri: "http://" + utils.getIpAddress() + ":" + _this.config.ServicePort + "/web/snapshot.jpg",
+                    Uri: "http://" + utils.getIpAddress() + ":" + _this.config.ServicePort + "/web/snapshot.png",
                     InvalidAfterConnect: false,
                     InvalidAfterReboot: false,
                     Timeout: "PT30S"
